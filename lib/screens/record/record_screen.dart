@@ -7,7 +7,7 @@ class RecordScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      backgroundColor: AppColors.background,
+      backgroundColor: Colors.yellowAccent,
       body: Center(
         child: Text("RecordScreen"),
       ),

@@ -17,13 +17,17 @@ class RootScreen extends StatefulWidget {
   State<RootScreen> createState() => _RootScreenState();
 }
 
-class _RootScreenState extends State<RootScreen> with WidgetsBindingObserver {
+class _RootScreenState extends State<RootScreen>
+    with WidgetsBindingObserver, SingleTickerProviderStateMixin {
   final controller = Get.put(RootController());
+
+  late TabController _tabController;
 
   @override
   void initState() {
     WidgetsBinding.instance.addObserver(this);
     super.initState();
+    _tabController = TabController(length: 4, vsync: this);
   }
 
   @override
@@ -64,40 +68,44 @@ class _RootScreenState extends State<RootScreen> with WidgetsBindingObserver {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: PageView(
+      body: TabBarView(
         physics: const NeverScrollableScrollPhysics(),
-        controller: controller.pageController,
+        controller: _tabController,
         children: pages,
       ),
-      bottomNavigationBar: Obx(
-        () => Footer(
-            currentIndex: controller.selectedIndex.value, switchTap: switchTab),
+      bottomNavigationBar: Footer(
+        currentIndex: _tabController.index,
+        switchTap: (index) {
+          setState(() {
+            _tabController.index = index;
+          });
+        },
       ),
     );
   }
 
-  Future<void> switchTab(int index) async {
-    setState(() {
-      switch (index) {
-        case 0:
-          homeNavigator.currentState
-              ?.popUntil(ModalRoute.withName(RouteName.home));
-          break;
-        case 1:
-          mapNavigator.currentState
-              ?.popUntil(ModalRoute.withName(RouteName.map));
-          break;
-        case 2:
-          recordNavigator.currentState
-              ?.popUntil(ModalRoute.withName(RouteName.record));
-          break;
-        case 3:
-          settingNavigator.currentState
-              ?.popUntil(ModalRoute.withName(RouteName.setting));
-          break;
-      }
-      controller.selectedIndex.value = index;
-      controller.pageController.jumpToPage(index);
-    });
-  }
+// Future<void> switchTab(int index) async {
+//   setState(() {
+//     switch (index) {
+//       case 0:
+//         homeNavigator.currentState
+//             ?.popUntil(ModalRoute.withName(RouteName.home));
+//         break;
+//       case 1:
+//         mapNavigator.currentState
+//             ?.popUntil(ModalRoute.withName(RouteName.map));
+//         break;
+//       case 2:
+//         recordNavigator.currentState
+//             ?.popUntil(ModalRoute.withName(RouteName.record));
+//         break;
+//       case 3:
+//         settingNavigator.currentState
+//             ?.popUntil(ModalRoute.withName(RouteName.setting));
+//         break;
+//     }
+//     controller.selectedIndex.value = index;
+//     controller.pageController.jumpToPage(index);
+//   });
+// }
 }
