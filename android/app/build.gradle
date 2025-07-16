@@ -91,7 +91,7 @@ android {
     productFlavors {
         dev {
             dimension "app"
-            resValue "string", "app_name", "[DEV] Base Flutter"
+            resValue "string", "app_name", ":DEV Base Flutter"
             applicationId "com.nvhh.base_flutter.dev"
             flutter.target "lib/main_dev.dart"
             versionCode 1
@@ -100,7 +100,7 @@ android {
 
         stg {
             dimension "app"
-            resValue "string", "app_name", "[STG] Base Flutter"
+            resValue "string", "app_name", ":STG Base Flutter"
             applicationId "com.nvhh.base_flutter.stg"
             flutter.target "lib/main_stag.dart"
             versionCode 1
