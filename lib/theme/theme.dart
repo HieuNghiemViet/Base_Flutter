@@ -39,7 +39,7 @@ class AppTheme {
         dialogTheme: dialogTheme,
         splashColor: Colors.transparent,
         highlightColor: Colors.transparent,
-        tabBarTheme: tabbarTheme,
+        tabBarTheme: tabBarTheme,
         textTheme: textTheme);
   }
 
@@ -49,7 +49,7 @@ class AppTheme {
         );
   }
 
-  TabBarTheme get tabbarTheme {
+  TabBarThemeData get tabBarTheme {
     return _defaultThemeData.tabBarTheme.copyWith(
       labelStyle: AppTextStyle.t14w700(),
       labelColor: AppColors.black,
@@ -61,7 +61,7 @@ class AppTheme {
     );
   }
 
-  DialogTheme get dialogTheme {
+  DialogThemeData get dialogTheme {
     return _defaultThemeData.dialogTheme.copyWith(
       backgroundColor: AppColors.black,
     );
@@ -82,30 +82,30 @@ class AppTheme {
 
   ElevatedButtonThemeData get elevatedButtonTheme => ElevatedButtonThemeData(
         style: ButtonStyle(
-          shape: MaterialStateProperty.resolveWith(
+          shape: WidgetStateProperty.resolveWith(
             (states) => RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(4),
             ),
           ),
-          shadowColor: MaterialStateProperty.resolveWith(
+          shadowColor: WidgetStateProperty.resolveWith(
             (states) {
               return AppColors.transparent;
             },
           ),
-          backgroundColor: MaterialStateProperty.resolveWith(
+          backgroundColor: WidgetStateProperty.resolveWith(
             (states) {
-              if (states.any((state) => state == MaterialState.disabled)) {
+              if (states.any((state) => state == WidgetState.disabled)) {
                 return AppColors.grey;
               }
               return AppColors.primary;
             },
           ),
-          foregroundColor: MaterialStateProperty.resolveWith(
+          foregroundColor: WidgetStateProperty.resolveWith(
             (states) {
               return AppColors.white;
             },
           ),
-          textStyle: MaterialStateProperty.resolveWith(
+          textStyle: WidgetStateProperty.resolveWith(
             (states) => AppTextStyle.button,
           ),
         ),
@@ -114,36 +114,36 @@ class AppTheme {
   OutlinedButtonThemeData? get outlinedButtonTheme {
     return OutlinedButtonThemeData(
       style: ButtonStyle(
-        shape: MaterialStateProperty.resolveWith(
+        shape: WidgetStateProperty.resolveWith(
           (states) => RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(4.r),
           ),
         ),
-        side: MaterialStateProperty.resolveWith(
+        side: WidgetStateProperty.resolveWith(
           (states) {
-            if (states.any((state) => state == MaterialState.disabled)) {
+            if (states.any((state) => state == WidgetState.disabled)) {
               return const BorderSide(color: AppColors.grey);
             }
             return const BorderSide(color: AppColors.primary, width: 2);
           },
         ),
-        shadowColor: MaterialStateProperty.resolveWith(
+        shadowColor: WidgetStateProperty.resolveWith(
           (states) {
             return AppColors.transparent;
           },
         ),
-        foregroundColor: MaterialStateProperty.resolveWith(
+        foregroundColor: WidgetStateProperty.resolveWith(
           (states) {
-            if (states.any((state) => state == MaterialState.disabled)) {
+            if (states.any((state) => state == WidgetState.disabled)) {
               return AppColors.grey;
             }
             return AppColors.primary;
           },
         ),
         backgroundColor:
-            MaterialStateColor.resolveWith((states) => AppColors.white),
-        textStyle: MaterialStateProperty.resolveWith((states) {
-          if (states.any((state) => state == MaterialState.disabled)) {
+            WidgetStateColor.resolveWith((states) => AppColors.white),
+        textStyle: WidgetStateProperty.resolveWith((states) {
+          if (states.any((state) => state == WidgetState.disabled)) {
             return AppTextStyle.t14w700(AppColors.grey);
           }
           return AppTextStyle.t14w700(AppColors.primary);
