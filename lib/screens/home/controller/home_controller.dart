@@ -1,4 +1,4 @@
-import 'package:get/get.dart';
+import 'package:base_flutter/base.dart';
 
 class HomeController extends GetxController {
 

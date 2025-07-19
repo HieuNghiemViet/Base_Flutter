@@ -1,7 +1,4 @@
-import 'package:base_flutter/routes/routes.dart';
-import 'package:base_flutter/theme/images.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:base_flutter/base.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -14,7 +11,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(const Duration(seconds: 3))
+    Future.delayed(const Duration(milliseconds: 300))
         .then((value) => Get.offAllNamed(RouteName.login));
   }
 
@@ -28,7 +25,7 @@ class _SplashScreenState extends State<SplashScreen> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Image.asset(
-            AppImages.imgApp,
+            AppImages.flutter,
             width: 150,
             height: 150,
           )

@@ -19,6 +19,10 @@ class AppColors {
   static const white = Colors.white;
   static const transparent = Colors.transparent;
 
-  static const primary = Color(0xff8187A1);
+  static const primary = Color(0xffDE400F);
   static const background = Color(0xffE8E6E9);
+  static const raven = Color(0xff667085);
+  static const dazzleRose = Color(0xffEE46BC);
+  static const dodgerBlue = Color(0xff2E90FA);
+  static const cinnabar = Color(0xffF04438);
 }

@@ -2,7 +2,7 @@ import 'package:base_flutter/theme/colors.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
-class NetworkImage extends StatelessWidget {
+class BaseNetworkImage extends StatelessWidget {
   final String? imageUrl;
   final double? width;
   final double? height;
@@ -12,7 +12,7 @@ class NetworkImage extends StatelessWidget {
   final BorderRadius? borderRadius;
   final Widget? placeholder;
 
-  const NetworkImage({
+  const BaseNetworkImage({
     Key? key,
     required this.imageUrl,
     this.width,
@@ -24,8 +24,8 @@ class NetworkImage extends StatelessWidget {
     this.placeholder,
   }) : super(key: key);
 
-  const NetworkImage.circle({
-    super.key,
+  BaseNetworkImage.circle({
+    Key? key,
     required this.imageUrl,
     this.fit,
     this.borderColor,
@@ -36,8 +36,8 @@ class NetworkImage extends StatelessWidget {
         height = size,
         cornerRadius = size / 2;
 
-  const NetworkImage.square({
-    super.key,
+  BaseNetworkImage.square({
+    Key? key,
     required this.imageUrl,
     this.fit,
     this.borderColor,
@@ -54,7 +54,7 @@ class NetworkImage extends StatelessWidget {
         Container(
           width: width,
           height: height,
-          color: AppColors.primary,
+          color: AppColors.grey,
         );
     Widget child;
     if (imageUrl?.isNotEmpty == true) {

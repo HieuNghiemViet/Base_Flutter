@@ -10,7 +10,7 @@ extension SupportedLocalesX on SupportedLocales {
   Locale get locale {
     switch (this) {
       case SupportedLocales.english:
-        return const Locale('en');
+        return const Locale('vi');
       case SupportedLocales.vietnam:
         return const Locale('vi');
     }
@@ -18,7 +18,7 @@ extension SupportedLocalesX on SupportedLocales {
 }
 
 final _mapLanguages = {
-  SupportedLocales.english.locale: LanguageEn(),
+  // SupportedLocales.english.locale: LanguageEn(),
   SupportedLocales.vietnam.locale: LanguageVi(),
 };
 
@@ -26,8 +26,9 @@ class L {
   static BaseLanguage get current {
     var languageCode = Get.deviceLocale?.languageCode;
     if (languageCode != null) {
-      var language = _mapLanguages[Locale(languageCode)];
-      if (language != null) return language;
+      // var language = _mapLanguages[Locale(languageCode)];
+      // if (language != null) return language;
+      return LanguageVi();
     }
 
     var context = Get.context;
@@ -49,7 +50,7 @@ class AppLocalizationDelegate extends LocalizationsDelegate<BaseLanguage> {
   bool _isSupported(Locale locale) => _mapLanguages.containsKey(locale);
 
   Future<BaseLanguage> _load(Locale locale) async {
-    return LanguageEn();
+    return LanguageVi();
     // var result = _mapLanguages[locale];
     // return result ?? LanguageEn();
   }

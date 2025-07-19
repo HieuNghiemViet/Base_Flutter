@@ -1,9 +1,6 @@
-import 'package:base_flutter/routes/routes.dart';
-import 'package:base_flutter/utils/widgets/footer.dart';
-import 'package:base_flutter/widgets/keep_alive_page.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'root_controller.dart';
+import 'package:base_flutter/base.dart';
+import 'package:base_flutter/screens/root/root_controller.dart' show RootController;
+
 
 final GlobalKey<NavigatorState> homeNavigator = GlobalKey<NavigatorState>();
 final GlobalKey<NavigatorState> mapNavigator = GlobalKey<NavigatorState>();
@@ -47,10 +44,15 @@ class _RootScreenState extends State<RootScreen>
     String initRoute,
   ) {
     return KeepAlivePage(
-      child: WillPopScope(
-        onWillPop: () => _onWillPopScope(globalKey),
+      child: PopScope(
+        canPop: false,
+        onPopInvoked: (didPop) async {
+          if (!didPop) {
+            await _onWillPopScope(globalKey);
+          }
+        },
         child: Navigator(
-          key: globalKey,
+          // key: globalKey,
           initialRoute: initRoute,
           onGenerateRoute: AppRoutes.generateRoute,
         ),
@@ -60,8 +62,8 @@ class _RootScreenState extends State<RootScreen>
 
   final pages = [
     _buildNavigatorWidget(homeNavigator, RouteName.home),
-    _buildNavigatorWidget(mapNavigator, RouteName.map),
-    _buildNavigatorWidget(recordNavigator, RouteName.record),
+    _buildNavigatorWidget(mapNavigator, RouteName.merchandise),
+    _buildNavigatorWidget(recordNavigator, RouteName.order),
     _buildNavigatorWidget(settingNavigator, RouteName.setting),
   ];
 
@@ -71,7 +73,7 @@ class _RootScreenState extends State<RootScreen>
       body: TabBarView(
         physics: const NeverScrollableScrollPhysics(),
         controller: _tabController,
-        children: pages,
+        children: MainTab.values.map((e) => e.screen).toList(),
       ),
       bottomNavigationBar: Footer(
         currentIndex: _tabController.index,
@@ -83,6 +85,7 @@ class _RootScreenState extends State<RootScreen>
       ),
     );
   }
+}
 
 // Future<void> switchTab(int index) async {
 //   setState(() {
@@ -93,11 +96,11 @@ class _RootScreenState extends State<RootScreen>
 //         break;
 //       case 1:
 //         mapNavigator.currentState
-//             ?.popUntil(ModalRoute.withName(RouteName.map));
+//             ?.popUntil(ModalRoute.withName(RouteName.merchandise));
 //         break;
 //       case 2:
 //         recordNavigator.currentState
-//             ?.popUntil(ModalRoute.withName(RouteName.record));
+//             ?.popUntil(ModalRoute.withName(RouteName.order));
 //         break;
 //       case 3:
 //         settingNavigator.currentState
@@ -108,4 +111,4 @@ class _RootScreenState extends State<RootScreen>
 //     controller.pageController.jumpToPage(index);
 //   });
 // }
-}
+//}

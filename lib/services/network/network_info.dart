@@ -1,9 +1,10 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 
 class NetworkInfo {
-  static Future<bool> isConnected() async {
-    List<ConnectivityResult> result = await Connectivity().checkConnectivity();
+  static Future<bool> isConnectedInternet() async {
+    List<ConnectivityResult> results = await Connectivity().checkConnectivity();
 
-    return result.first != ConnectivityResult.none;
+    return results.contains(ConnectivityResult.wifi) ||
+        results.contains(ConnectivityResult.mobile);
   }
 }

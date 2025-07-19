@@ -1,7 +1,7 @@
 import 'package:base_flutter/screens/home/home_screen.dart';
 import 'package:base_flutter/screens/login/login_screen.dart';
-import 'package:base_flutter/screens/map/map_screen.dart';
-import 'package:base_flutter/screens/record/record_screen.dart';
+import 'package:base_flutter/screens/merchandise/merchandise_screen.dart';
+import 'package:base_flutter/screens/order/record_screen.dart';
 import 'package:base_flutter/screens/root/root_screen.dart';
 import 'package:base_flutter/screens/setting/setting_screen.dart';
 import 'package:base_flutter/screens/splash/splash_screen.dart';
@@ -13,9 +13,10 @@ class RouteName {
   static const String login = "login";
   static const String root = "root";
   static const String home = "home";
-  static const String map = "map";
-  static const String record = "record";
+  static const String merchandise = "merchandise";
+  static const String order = "order";
   static const String setting = "setting";
+  static const String test = "test";
 }
 
 class AppRoutes {
@@ -23,10 +24,11 @@ class AppRoutes {
     RouteName.splash: () => const SplashScreen(),
     RouteName.root: () => const RootScreen(),
     RouteName.home: () => HomeScreen(),
-    RouteName.map: () => const MapScreen(),
+    RouteName.merchandise: () => const MerchandiseScreen(),
     RouteName.setting: () => const SettingsScreen(),
-    RouteName.record: () => const RecordScreen(),
+    RouteName.order: () => const OrderScreen(),
     RouteName.login: () => const LoginScreen(),
+    RouteName.test: () => const TestScreen(),
   };
 
   static final bindings = <String, List<Bindings> Function()>{};

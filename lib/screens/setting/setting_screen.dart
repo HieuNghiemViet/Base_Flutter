@@ -1,5 +1,4 @@
-import 'package:base_flutter/theme/colors.dart';
-import 'package:flutter/material.dart';
+import 'package:base_flutter/base.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});

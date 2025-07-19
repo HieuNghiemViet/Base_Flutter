@@ -1,5 +1,5 @@
+import 'package:base_flutter/base.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:get/get.dart';
 
 class DialogHelper {
   static Future showAlert({

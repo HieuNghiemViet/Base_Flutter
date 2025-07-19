@@ -1,6 +1,5 @@
+import 'package:base_flutter/base.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class IndicatorLoading extends StatelessWidget {
   const IndicatorLoading({Key? key}) : super(key: key);
@@ -8,9 +7,8 @@ class IndicatorLoading extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Material(
-      child: CupertinoActivityIndicator(
-        color: Colors.white,
-        radius: 16,
+      child: CircularProgressIndicator(
+        color: AppColors.primary,
       ),
     );
   }

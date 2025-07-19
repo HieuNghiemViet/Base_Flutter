@@ -1,9 +1,11 @@
 import 'package:base_flutter/theme/colors.dart';
 import 'package:base_flutter/theme/icons.dart';
+import 'package:base_flutter/utils/constants/enum.dart';
 import 'package:base_flutter/utils/constants/strings.dart';
 import 'package:base_flutter/utils/widgets/app_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class Footer extends StatelessWidget {
   final int currentIndex;
@@ -23,34 +25,46 @@ class Footer extends StatelessWidget {
       showSelectedLabels: true,
       showUnselectedLabels: true,
       unselectedItemColor: AppColors.grey,
-      selectedItemColor: AppColors.grey,
-      selectedLabelStyle: const TextStyle(fontWeight: FontWeight.bold),
-      unselectedLabelStyle: const TextStyle(fontWeight: FontWeight.bold),
-      items: [
-        _buildItem(
-          AppIcons.icHomeOn,
-          AppIcons.icHomeOff,
-          RawString.home,
-        ),
-        _buildItem(
-          AppIcons.icMapOn,
-          AppIcons.icMapOff,
-          RawString.map,
-        ),
-        _buildItem(
-          AppIcons.icRecordOn,
-          AppIcons.icRecordOff,
-          RawString.record,
-        ),
-        _buildItem(
-          AppIcons.icSettingOn,
-          AppIcons.icSettingOff,
-          RawString.setting,
-        ),
-      ],
+      selectedItemColor: AppColors.primary,
+      selectedLabelStyle:
+          const TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+      unselectedLabelStyle:
+          const TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+      items: MainTab.values
+          .map((tab) => BottomNavigationBarItem(
+                icon: Builder(
+                  builder: (context) => SvgPicture.asset(
+                    tab.icon,
+                    color: IconTheme.of(context).color,
+                  ),
+                ),
+                label: tab.title,
+              ))
+          .toList(),
+      // [
+      //   _buildItem(
+      //     AppIcons.icHomeOn,
+      //     AppIcons.icHomeOff,
+      //     RawString.home,
+      //   ),
+      //   _buildItem(
+      //     AppIcons.icMapOn,
+      //     AppIcons.icMapOff,
+      //     RawString.merchandise,
+      //   ),
+      //   _buildItem(
+      //     AppIcons.icRecordOn,
+      //     AppIcons.icRecordOff,
+      //     RawString.order,
+      //   ),
+      //   _buildItem(
+      //     AppIcons.icSettingOn,
+      //     AppIcons.icSettingOff,
+      //     RawString.setting,
+      //   ),
+      // ],
     );
   }
-
 
   BottomNavigationBarItem _buildItem(
     String activeIcon,
